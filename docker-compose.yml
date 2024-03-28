@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  mosquitto:
+    container_name: mosquitto_container
+    image: eclipse-mosquitto:1.6.10
+    volumes:
+      - ./config:/mosquitto/config/
+      - ./config/passwd:/mosquitto/config/passwd
+    ports:
+      - '1883:1883'
+      - '9001:9001'
+    networks:
+      - default
+    restart: unless-stopped
+
+networks:
+  default:
